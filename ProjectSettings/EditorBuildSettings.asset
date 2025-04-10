@@ -9,6 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 4755b35b590504809a7525fd2109c2e2
   m_configObjects:
+    AR Foundation RemoteARFoundationRemoteLoaderSettings: {fileID: 11400000, guid: 85b60ffd2fa2c054b8234a5aee6be4af,
+      type: 2}
+    AR Foundation RemoteARFoundationRemoteSessionRecordsData: {fileID: 11400000, guid: 438e9a2659663004981b2fb3317d9c10,
+      type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 0465d33c6aee55f44b0237db8b0e0259,
