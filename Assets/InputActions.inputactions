@@ -1,0 +1,57 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Interaction",
+            "id": "eac87dde-1c4e-49ac-9f33-abeb801007d8",
+            "actions": [
+                {
+                    "name": "Touch",
+                    "type": "Button",
+                    "id": "f205a892-eee9-4af6-aeea-57a5adf74849",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c9db240c-347e-44a4-a64b-531532964cd0",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mobile",
+                    "action": "Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8195b312-fda2-4607-b1fb-b2c3417b203a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Mobile",
+            "bindingGroup": "Mobile",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
