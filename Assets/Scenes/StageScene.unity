@@ -442,6 +442,11 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 1690825036114509552, guid: 9078844f04738a64cb19b195fc91c106,
+        type: 3}
+      propertyPath: m_StageSceneName
+      value: Stage2
+      objectReference: {fileID: 0}
     - target: {fileID: 4517126703696588595, guid: 9078844f04738a64cb19b195fc91c106,
         type: 3}
       propertyPath: m_Pivot.x
@@ -674,6 +679,11 @@ PrefabInstance:
       value: 'Stage3
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690825036114509552, guid: 9078844f04738a64cb19b195fc91c106,
+        type: 3}
+      propertyPath: m_StageSceneName
+      value: Stage3
       objectReference: {fileID: 0}
     - target: {fileID: 4517126703696588595, guid: 9078844f04738a64cb19b195fc91c106,
         type: 3}
@@ -936,6 +946,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 723795492}
     m_Modifications:
+    - target: {fileID: 1690825036114509552, guid: 9078844f04738a64cb19b195fc91c106,
+        type: 3}
+      propertyPath: m_StageSceneName
+      value: Stage1
+      objectReference: {fileID: 0}
     - target: {fileID: 4517126703696588595, guid: 9078844f04738a64cb19b195fc91c106,
         type: 3}
       propertyPath: m_Pivot.x

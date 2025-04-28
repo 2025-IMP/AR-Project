@@ -16,11 +16,6 @@ namespace IMP.Core
             m_Rigidbody.useGravity = false; // 중력 아예 꺼버려
         }
 
-        public override void Simulate(Vector3 force)
-        {
-            m_Direction = force.normalized; // 방향만 저장
-        }
-
         public override void Throw(Vector3 pos, Vector3 force)
         {
             m_Ghosted = false;

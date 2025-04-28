@@ -101,7 +101,9 @@ namespace IMP.Core
             }
 
             Vector3 force = Quaternion.Inverse(m_BallRoot.rotation) * m_Force;
-            m_BallPrefab.Throw(m_BallRoot.position, force);
+
+            Ball ball = Instantiate(m_BallPrefab);
+            ball.Throw(m_BallRoot.position, force);
 
             m_CurrentBall = null;
             Invoke(nameof(RequestNextBall), 1.5f);

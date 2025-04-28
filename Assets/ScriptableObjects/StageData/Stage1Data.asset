@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb3157e89e88ea40a77934598e2cd0d, type: 3}
   m_Name: Stage1Data
   m_EditorClassIdentifier: 
-  BallPrefabs: []
-  StructurePrefab: {fileID: 0}
-  BallCount: 0
+  BallPrefabs:
+  - {fileID: -6868773981371741450, guid: 888401547bcda194cbda3d64341eb692, type: 3}
+  StructurePrefab: {fileID: 8938521218369778630, guid: 8c76fb5d71bc9144783510a123246a36,
+    type: 3}
+  BallCount: 1
