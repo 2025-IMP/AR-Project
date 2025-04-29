@@ -46,6 +46,7 @@ namespace IMP.Core
         private void HandleInput()
         {
             if (m_CurrentBall == null) return;
+            if (GameManager.Instance.State != GameManager.GameState.BUILT) return;
 
             var touches = Touch.activeTouches;
 
