@@ -7,7 +7,9 @@ namespace IMP.Core
 {
     public class Block : MonoBehaviour
     {
+        [HideInInspector]
         protected Rigidbody m_Rigidbody;
+        public Rigidbody Rigidbody => m_Rigidbody;
 
         public virtual void Initialize()
         {

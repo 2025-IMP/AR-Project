@@ -18,16 +18,22 @@ namespace IMP.Core
                 return;
             }
 
-            // 충돌한 위치 중심으로 폭발
             Vector3 explosionPos = transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, m_ExplosionRadius);
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
-                if (rb != null)
+                if (!colliders[i].transform.parent.CompareTag("Block")) continue;
+
+                if (colliders[i].transform.parent.TryGetComponent(out Block block))
                 {
-                    rb.AddExplosionForce(m_ExplosionForce, explosionPos, m_ExplosionRadius);
+                    block.Rigidbody.isKinematic = false;
+                    block.Rigidbody.useGravity = true;
+                }
+
+                if (colliders[i].transform.parent.TryGetComponent(out Rigidbody rigidbody))
+                {
+                    rigidbody.AddExplosionForce(m_ExplosionForce, explosionPos, m_ExplosionRadius);
                 }
             }
 
