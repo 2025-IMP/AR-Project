@@ -5,7 +5,7 @@ namespace IMP.Core
 {
     public class Block : MonoBehaviour
     {
-        private Rigidbody m_Rigidbody;
+        protected Rigidbody m_Rigidbody;
 
         public virtual void Initialize()
         {

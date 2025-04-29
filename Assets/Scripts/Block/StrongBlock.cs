@@ -7,6 +7,12 @@ namespace IMP.Core
     {
         private int m_HitCount = 0;
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            m_Rigidbody.isKinematic = true;
+        }
+
         protected override void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.CompareTag("Ball"))
@@ -14,7 +20,8 @@ namespace IMP.Core
                 m_HitCount++;
                 if (m_HitCount >= 3)
                 {
-                    base.Initialize(); // 3번 맞아야 중력 적용
+                    m_Rigidbody.isKinematic = false;
+                    m_Rigidbody.useGravity = true;
                 }
             }
         }
