@@ -64,6 +64,7 @@ namespace IMP.Core
             Initialize();
             PrepareStage();
             PrepareBalls();
+            Debug.Log("asdfgrfsag");
         }
 
         private void Update()
