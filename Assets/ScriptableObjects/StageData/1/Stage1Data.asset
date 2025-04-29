@@ -15,5 +15,8 @@ MonoBehaviour:
   BallDatas:
   - Type: 0
     Count: 3
+  MissionDatas:
+  - {fileID: 11400000, guid: 715104d36ffbf4bfa9c9d69eb3b40daa, type: 2}
+  - {fileID: 11400000, guid: 26257ecc286714e79a1cf4cdb4328932, type: 2}
   StructurePrefab: {fileID: 8938521218369778630, guid: 8c76fb5d71bc9144783510a123246a36,
     type: 3}

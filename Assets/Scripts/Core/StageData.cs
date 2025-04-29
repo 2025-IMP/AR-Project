@@ -17,6 +17,7 @@ namespace IMP.Core
     public class StageData : ScriptableObject
     {
         public List<BallData> BallDatas;
+        public List<MissionData> MissionDatas;
         public Structure StructurePrefab;
     }
 }
