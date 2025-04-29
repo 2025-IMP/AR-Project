@@ -9,6 +9,7 @@ using TrackableType = UnityEngine.XR.ARSubsystems.TrackableType;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
 using System.Collections;
+using System;
 
 namespace IMP.Core
 {
@@ -51,8 +52,18 @@ namespace IMP.Core
         [SerializeField] private Structure stagePrefab3;
         private Structure m_StructurePrefab;
         [SerializeField] private GameUImanager gameUiManager;
-        private int ballCount;
-
+        public Action starDestroyEvent;
+        public void starEventFunction(){
+            //star
+        }
+        void OnEnable()
+        {
+            starDestroyEvent+=starEventFunction;
+        }
+        void OnDisable()
+        {
+            starDestroyEvent-=starEventFunction;
+        }
         private void Awake()
         {
             s_Instance = this;
