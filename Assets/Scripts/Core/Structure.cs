@@ -13,10 +13,17 @@ namespace IMP.Core
         private Transform m_BlockRoot;
         private List<Block> m_Blocks = new List<Block>();
 
+        [SerializeField]
+        private Transform m_StarRoot;
+        private List<Star> m_Stars = new List<Star>();
+
         public void Initialize()
         {
             m_Blocks = m_BlockRoot.GetComponentsInChildren<Block>().ToList();
             m_Blocks.ForEach(block => block.Initialize());
+
+            m_Stars = m_StarRoot.GetComponentsInChildren<Star>().ToList();
+            m_Stars.ForEach(star => star.Initialize());
         }
     }
 }

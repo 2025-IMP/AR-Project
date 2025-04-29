@@ -119,37 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &91351928
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 91351929}
-  m_Layer: 0
-  m_Name: BallSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &91351929
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 91351928}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386113244
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +478,7 @@ GameObject:
   - component: {fileID: 776095552}
   - component: {fileID: 776095551}
   m_Layer: 0
-  m_Name: GameUiManager
+  m_Name: GameUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1911,18 +1880,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ARRaycastManager: {fileID: 1433848967}
-  StageData1: {fileID: 11400000, guid: b9d371a4c239dc643879e2518751a414, type: 2}
-  StageData2: {fileID: 11400000, guid: e36db8171509b5148837619810a1f7c2, type: 2}
-  StageData3: {fileID: 11400000, guid: 9e10b3fb279f51b47a1d201ce443ae27, type: 2}
-  m_BallSpawnPoint: {fileID: 91351929}
+  m_DefaultStageData: {fileID: 11400000, guid: b9d371a4c239dc643879e2518751a414, type: 2}
   m_Slingshot: {fileID: 470940989426893888}
-  stagePrefab1: {fileID: 8938521218369778630, guid: 8c76fb5d71bc9144783510a123246a36,
-    type: 3}
-  stagePrefab2: {fileID: 8938521218369778630, guid: d8974a8441ba63a4498a12d21e5a8b29,
-    type: 3}
-  stagePrefab3: {fileID: 8938521218369778630, guid: 7e9eb307ca464fb48b1b27b80e4163ff,
-    type: 3}
-  gameUiManager: {fileID: 776095551}
 --- !u!4 &2059023057
 Transform:
   m_ObjectHideFlags: 0
@@ -2237,7 +2196,7 @@ PrefabInstance:
     - target: {fileID: 37755396959301042, guid: f7cb9d3f554cf7848955c5dc0fcbadcd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 37755396959301042, guid: f7cb9d3f554cf7848955c5dc0fcbadcd,
         type: 3}
@@ -2331,7 +2290,6 @@ SceneRoots:
   - {fileID: 1433848971}
   - {fileID: 1038258605}
   - {fileID: 2059023057}
-  - {fileID: 91351929}
   - {fileID: 1552097292}
   - {fileID: 1097279643}
   - {fileID: 776095552}

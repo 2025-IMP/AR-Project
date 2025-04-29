@@ -27,6 +27,11 @@ namespace IMP.Core
 
         private bool m_Touching = false;
 
+        public void Initialize()
+        {
+            m_CurrentBall = null;
+        }
+
         private void Update()
         {
             HandleInput();
@@ -34,6 +39,7 @@ namespace IMP.Core
             if (m_Touching)
             {
                 Vector3 force = m_BallRoot.InverseTransformDirection(m_Force);
+                Debug.Log($"Force: {force}");
                 m_TrajPrediction.Simulate(m_BallPrefab, m_BallRoot.position, force);
             }
             else
@@ -45,7 +51,6 @@ namespace IMP.Core
         private void HandleInput()
         {
             if (m_CurrentBall == null) return;
-            if (GameManager.Instance.State != GameManager.GameState.BUILT) return;
 
             var touches = Touch.activeTouches;
 
@@ -85,7 +90,7 @@ namespace IMP.Core
             float vertPower =
                 Mathf.Lerp(0f, m_VertPowerBoundary, vertRatio) * Mathf.Sign(m_DeltaPos.y);
 
-            m_Force = new Vector3(horzPower, 1f, vertPower);
+            m_Force = new Vector3(horzPower, 0.2f, vertPower);
         }
 
         public void SetCurrentBall(Ball ball)

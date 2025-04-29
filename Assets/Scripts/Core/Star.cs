@@ -7,15 +7,20 @@ namespace IMP.Core
 {
     public class Star : MonoBehaviour
     {
+        public void Initialize()
+        {
+        }
+
         void OnTriggerEnter(Collider other)
         {
             if(other.CompareTag("Ball")){
                 Destroy(this.gameObject);
             }
         }
+
         void OnDestroy()
         {
-            GameManager.Instance.starDestroyEvent?.Invoke();
+            GameManager.Instance.OnStarCollected?.Invoke();
         }
     }
 }

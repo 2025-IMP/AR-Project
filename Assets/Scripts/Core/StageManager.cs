@@ -21,5 +21,10 @@ namespace IMP.Core
         {
             m_CurrStageData = sdata;
         }
+
+        public StageData GetStageData(int index)
+        {
+            return m_StageDatas[index];
+        }
     }
 }

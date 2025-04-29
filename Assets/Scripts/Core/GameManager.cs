@@ -8,7 +8,6 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using TrackableType = UnityEngine.XR.ARSubsystems.TrackableType;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using System;
 using IMP.UI;
 
@@ -20,51 +19,46 @@ namespace IMP.Core
         {
             READY,
             BUILT,
-            PLAING,
             CLEAR,
-            FAIL,
         }
 
         private static GameManager s_Instance;
         public static GameManager Instance => s_Instance;
 
-        [SerializeField] private ARRaycastManager m_ARRaycastManager;
+        [SerializeField]
+        private ARRaycastManager m_ARRaycastManager;
         private List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
 
-        [SerializeField] private StageData StageData1;
-        [SerializeField] private StageData StageData2;
-        [SerializeField] private StageData StageData3;
-        private StageData m_StageData; // 추가 한 코드
+        [SerializeField]
+        private StageData m_DefaultStageData;
+        private StageData m_StageData;
         public StageData StageData => m_StageData;
-
-        [SerializeField] private Transform m_BallSpawnPoint;
 
         [SerializeField] private Slingshot m_Slingshot;
 
         private Structure m_Structure = null;
         private Queue<Ball> m_BallQueue = new Queue<Ball>();
-        private Ball m_CurrentBall;
 
         private GameState m_State = GameState.READY;
         public GameState State => m_State;
 
-        private Structure m_StructurePrefab;
+        public Action OnStarCollected;
 
-        [SerializeField] private GameUIManager gameUiManager;
-
-        public Action starDestroyEvent;
-        public void starEventFunction()
+        public void OnStarCollect()
         {
-            //star
+            
         }
+
         void OnEnable()
         {
-            starDestroyEvent += starEventFunction;
+            OnStarCollected += OnStarCollect;
         }
+
         void OnDisable()
         {
-            starDestroyEvent -= starEventFunction;
+            OnStarCollected -= OnStarCollect;
         }
+
         private void Awake()
         {
             s_Instance = this;
@@ -95,20 +89,21 @@ namespace IMP.Core
             m_State = GameState.READY;
             m_Structure = null;
             m_BallQueue.Clear();
-            m_CurrentBall = null;
+
+            m_Slingshot.Initialize();
         }
 
         private void PrepareStage()
         {
-            m_StructurePrefab = m_StageData.StructurePrefab;
             m_StageData = StageManager.Instance.CurrStageData;
+            m_StageData ??= m_DefaultStageData;
         }
 
         private void BuildStructure(Vector2 screenPos)
         {
             if (m_ARRaycastManager.Raycast(screenPos, m_Hits, TrackableType.PlaneWithinPolygon))
             {
-                m_Structure = Instantiate(m_StructurePrefab);
+                m_Structure = Instantiate(m_StageData.StructurePrefab);
                 m_Structure.Initialize();
                 m_Structure.transform.position = m_Hits[0].pose.position;
                 m_Structure.transform.rotation = Camera.main.transform.rotation;
@@ -120,16 +115,8 @@ namespace IMP.Core
                     dist / 0.23f
                 );
 
-                StartCoroutine(ChangeGameStateNextFrame(GameState.BUILT));
-                SpawnNextBall();
+                m_State = GameState.BUILT;
             }
-        }
-
-        private IEnumerator ChangeGameStateNextFrame(GameState state)
-        {
-            yield return new WaitForEndOfFrame();
-
-            m_State = state;
         }
 
         private void PrepareBalls()
@@ -137,18 +124,17 @@ namespace IMP.Core
             for (int i = 0; i < m_StageData.BallPrefabs.Count; i++)
             {
                 m_BallQueue.Enqueue(m_StageData.BallPrefabs[i]);
-                Debug.Log("" + m_BallQueue.Count);
             }
 
-            gameUiManager.OnBallCountChanged?.Invoke(m_BallQueue.Count);
+            GameUIManager.Instance.SetBallCount(m_BallQueue.Count);
         }
 
         public void SpawnNextBall()
         {
             if (m_BallQueue.Count > 0)
             {
-                m_CurrentBall = m_BallQueue.Dequeue();
-                m_Slingshot.SetCurrentBall(m_CurrentBall);
+                Ball nextBallPrefab = m_BallQueue.Dequeue();
+                m_Slingshot.SetCurrentBall(nextBallPrefab);
             }
             else
             {
@@ -156,12 +142,13 @@ namespace IMP.Core
                 EndGame();
             }
 
-            gameUiManager.OnBallCountChanged?.Invoke(m_BallQueue.Count);
+            GameUIManager.Instance.SetBallCount(m_BallQueue.Count);
         }
+
         private void EndGame()
         {
             m_State = GameState.CLEAR;
-            gameUiManager.gameOverPanel.SetActive(true);
+            GameUIManager.Instance.gameOverPanel.SetActive(true);
 
         }
         public void ToStageScene()

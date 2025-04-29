@@ -10,6 +10,9 @@ namespace IMP.UI
 {
     public class GameUIManager : MonoBehaviour
     {
+        private static GameUIManager s_Instance;
+        public static GameUIManager Instance => s_Instance;
+
         public GameObject gameOverPanel;
         public GameObject stageClearPanel;
         public TMP_Text ballCountText;
@@ -17,14 +20,9 @@ namespace IMP.UI
 
         public Action<int> OnBallCountChanged;
 
-        void OnEnable()
+        void Awake()
         {
-            OnBallCountChanged += SetBallCount;
-        }
-
-        void OnDisable()
-        {
-            OnBallCountChanged -= SetBallCount;
+            s_Instance = this;
         }
 
         public void SetBallCount(int ballCount)
