@@ -95,7 +95,7 @@ namespace IMP.Core
 
         public void Throw()
         {
-            if (m_BallPrefab == null)
+            if (m_CurrentBall == null)
             {
                 Debug.LogWarning("던질 공이 없습니다!!");
                 return;
@@ -103,7 +103,7 @@ namespace IMP.Core
 
             Vector3 force = Quaternion.Inverse(m_BallRoot.rotation) * m_Force;
 
-            Ball ball = Instantiate(m_BallPrefab);
+            Ball ball = Instantiate(m_CurrentBall);
             ball.Throw(m_BallRoot.position, force);
 
             m_CurrentBall = null;
