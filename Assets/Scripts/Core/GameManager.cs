@@ -125,8 +125,7 @@ namespace IMP.Core
         {
             for (int i = 0; i < m_StageData.BallPrefabs.Count; i++)
             {
-                Ball ballPrefab = Instantiate(m_StageData.BallPrefabs[i]);
-                m_BallQueue.Enqueue(ballPrefab);
+                m_BallQueue.Enqueue(m_StageData.BallPrefabs[i]);
                 Debug.Log(""+m_BallQueue.Count);
             }
 
