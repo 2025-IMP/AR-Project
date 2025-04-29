@@ -6,14 +6,11 @@ namespace IMP.Core
     public class ARPlaneHandler : MonoBehaviour
     {
         [SerializeField]
-        private ARPlaneManager m_ARPlaneManager;
+        private ARSession m_ARSession;
         
         void OnDisable()
         {
-            foreach (var plane in m_ARPlaneManager.trackables)
-            {
-                Destroy(plane.gameObject);
-            }
+            m_ARSession.Reset();
         }
     }
 }
