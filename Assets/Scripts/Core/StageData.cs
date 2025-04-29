@@ -1,4 +1,6 @@
-// StageData.cs
+/// Owner: Donghun Lee
+/// Description: It defines the data of each stage.
+
 using System.Collections.Generic;
 using UnityEngine;
 

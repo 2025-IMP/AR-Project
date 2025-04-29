@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Description: This is the script for the slingshot. It throws the current ball.
+
 using UnityEngine;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
@@ -7,17 +10,13 @@ namespace IMP.Core
     public class Slingshot : MonoBehaviour
     {
         [SerializeField] private TrajectoryPrediction m_TrajPrediction;
-
         [SerializeField] private Transform m_BallRoot;
 
         [SerializeField] private Ball m_BallPrefab;
 
         [SerializeField] private float m_HorzDeltaBoundary = 300f;
-
         [SerializeField] private float m_VertDeltaBoundary = 500f;
-
         [SerializeField] private float m_HorzPowerBoundary = 30f;
-
         [SerializeField] private float m_VertPowerBoundary = 30f;
 
         private Ball m_CurrentBall;
@@ -34,7 +33,7 @@ namespace IMP.Core
 
             if (m_Touching)
             {
-                Vector3 force = Quaternion.Inverse(m_BallRoot.rotation) * m_Force;
+                Vector3 force = m_BallRoot.InverseTransformDirection(m_Force);
                 m_TrajPrediction.Simulate(m_BallPrefab, m_BallRoot.position, force);
             }
             else
@@ -98,11 +97,10 @@ namespace IMP.Core
         {
             if (m_CurrentBall == null)
             {
-                Debug.LogWarning("던질 공이 없습니다!!");
                 return;
             }
 
-            Vector3 force = Quaternion.Inverse(m_BallRoot.rotation) * m_Force;
+            Vector3 force = m_BallRoot.InverseTransformDirection(m_Force);
 
             Ball ball = Instantiate(m_CurrentBall);
             ball.Throw(m_BallRoot.position, force);

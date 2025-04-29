@@ -1,3 +1,7 @@
+/// Owner: Dongjin Kuk
+/// Description: This script simulates the trajectory of the ball.
+/// By creating virtual physics scene, we can draw the ball's trajectory by LineRenderer.
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

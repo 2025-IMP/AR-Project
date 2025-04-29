@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Description: This script defines the data type of the audio.
+
 using System.Collections.Generic;
 using UnityEngine;
 

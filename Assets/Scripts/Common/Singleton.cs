@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Description: We can simply create singleton Monobehaviour script by extending this script.
+
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour

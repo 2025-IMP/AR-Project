@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Description: It controls the Intro Panel in Intro scene.
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

@@ -1,15 +1,16 @@
+/// Owner: Dongjin Kuk
+/// Description: This script manages the game logic.
+
 using System.Collections.Generic;
-using IMP.UI;
 using UnityEngine;
-using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.XR.ARFoundation;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using TrackableType = UnityEngine.XR.ARSubsystems.TrackableType;
 using UnityEngine.SceneManagement;
-using System.Security.Cryptography;
 using System.Collections;
 using System;
+using IMP.UI;
 
 namespace IMP.Core
 {
@@ -23,7 +24,7 @@ namespace IMP.Core
             CLEAR,
             FAIL,
         }
-        
+
         private static GameManager s_Instance;
         public static GameManager Instance => s_Instance;
 
@@ -32,7 +33,7 @@ namespace IMP.Core
 
         [SerializeField] private StageData StageData1;
         [SerializeField] private StageData StageData2;
-        [SerializeField] private StageData StageData3;        
+        [SerializeField] private StageData StageData3;
         private StageData m_StageData; // 추가 한 코드
         public StageData StageData => m_StageData;
 
@@ -47,22 +48,22 @@ namespace IMP.Core
         private GameState m_State = GameState.READY;
         public GameState State => m_State;
 
-        [SerializeField] private Structure stagePrefab1;
-        [SerializeField] private Structure stagePrefab2;
-        [SerializeField] private Structure stagePrefab3;
         private Structure m_StructurePrefab;
-        [SerializeField] private GameUImanager gameUiManager;
+
+        [SerializeField] private GameUIManager gameUiManager;
+
         public Action starDestroyEvent;
-        public void starEventFunction(){
+        public void starEventFunction()
+        {
             //star
         }
         void OnEnable()
         {
-            starDestroyEvent+=starEventFunction;
+            starDestroyEvent += starEventFunction;
         }
         void OnDisable()
         {
-            starDestroyEvent-=starEventFunction;
+            starDestroyEvent -= starEventFunction;
         }
         private void Awake()
         {
@@ -71,11 +72,9 @@ namespace IMP.Core
 
         private void Start()
         {
-            m_StageData = StageManager.Instance.CurrStageData;
             Initialize();
             PrepareStage();
             PrepareBalls();
-            Debug.Log("asdfgrfsag");
         }
 
         private void Update()
@@ -102,6 +101,7 @@ namespace IMP.Core
         private void PrepareStage()
         {
             m_StructurePrefab = m_StageData.StructurePrefab;
+            m_StageData = StageManager.Instance.CurrStageData;
         }
 
         private void BuildStructure(Vector2 screenPos)
@@ -137,12 +137,11 @@ namespace IMP.Core
             for (int i = 0; i < m_StageData.BallPrefabs.Count; i++)
             {
                 m_BallQueue.Enqueue(m_StageData.BallPrefabs[i]);
-                Debug.Log(""+m_BallQueue.Count);
+                Debug.Log("" + m_BallQueue.Count);
             }
 
             gameUiManager.OnBallCountChanged?.Invoke(m_BallQueue.Count);
         }
-
 
         public void SpawnNextBall()
         {
@@ -162,13 +161,11 @@ namespace IMP.Core
         private void EndGame()
         {
             m_State = GameState.CLEAR;
-            Debug.Log("모든 공을 사용했습니다! 게임 끝!");
-
-            //일단 게임 오버만
             gameUiManager.gameOverPanel.SetActive(true);
-           
+
         }
-        public void ToStageScene(){
+        public void ToStageScene()
+        {
             SceneManager.LoadSceneAsync("StageScene");
         }
     }

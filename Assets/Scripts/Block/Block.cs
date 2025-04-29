@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Description: This script is for block. It defines the block of the structure.
+
 using UnityEngine;
 
 namespace IMP.Core

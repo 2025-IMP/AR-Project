@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Description: The structure is a set of the blocks. It will be spawned in the game scene.
+
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;

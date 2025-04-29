@@ -1,34 +1,40 @@
+/// Owner: Minseong Kim
+/// Description: It manages the UIs in the game.
+
 using System;
 using IMP.Core;
 using TMPro;
 using UnityEngine;
 
-public class GameUImanager : MonoBehaviour
+namespace IMP.UI
 {
-    public GameObject gameOverPanel;
-    public GameObject stageClearPanel;
-    public TMP_Text ballCountText;
-    public TMP_Text starCountText;
-
-    public Action<int> OnBallCountChanged;
-
-    void OnEnable()
+    public class GameUIManager : MonoBehaviour
     {
-        OnBallCountChanged += SetBallCount;
-    }
+        public GameObject gameOverPanel;
+        public GameObject stageClearPanel;
+        public TMP_Text ballCountText;
+        public TMP_Text starCountText;
 
-    void OnDisable()
-    {
-        OnBallCountChanged -= SetBallCount;
-    }
+        public Action<int> OnBallCountChanged;
 
-    public void SetBallCount(int ballCount)
-    {
-        ballCountText.text = $"Ball {ballCount}/{GameManager.Instance.StageData.BallPrefabs.Count}";
-    }
+        void OnEnable()
+        {
+            OnBallCountChanged += SetBallCount;
+        }
 
-    public void SetStarCount(int starCount)
-    {
+        void OnDisable()
+        {
+            OnBallCountChanged -= SetBallCount;
+        }
 
+        public void SetBallCount(int ballCount)
+        {
+            ballCountText.text = $"Ball {ballCount}/{GameManager.Instance.StageData.BallPrefabs.Count}";
+        }
+
+        public void SetStarCount(int starCount)
+        {
+
+        }
     }
 }

@@ -1,4 +1,6 @@
-// WeakBlock.cs
+/// Owner: Donghun Lee
+/// Description: Special type of the block.
+
 using UnityEngine;
 
 namespace IMP.Core

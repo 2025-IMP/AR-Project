@@ -1,3 +1,7 @@
+/// Owner: Dongjin Kuk
+/// Description: This script manages the audio system of the game.
+/// The game plays an audio by using this script.
+
 using System.Collections.Generic;
 using UnityEngine;
 

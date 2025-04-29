@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Description: It manages the stage datas, and saves the current stage data.
+
 using UnityEngine;
 
 namespace IMP.Core

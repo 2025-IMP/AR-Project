@@ -1,4 +1,6 @@
-// ExplosionBall.cs
+/// Owner: Donghun Lee
+/// Description: Special type of the ball.
+
 using UnityEngine;
 
 namespace IMP.Core

@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Description: This script is for ball. It throws and simulate physics itself.
+
 using System.Collections;
 using UnityEngine;
 

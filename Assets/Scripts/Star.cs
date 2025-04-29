@@ -1,16 +1,21 @@
-using IMP.Core;
+/// Owner: Minseong Kim
+/// Description: Defines the logic when the star has been collided.
+
 using UnityEngine;
 
-public class Star : MonoBehaviour
+namespace IMP.Core
 {
-    void OnTriggerEnter(Collider other)
+    public class Star : MonoBehaviour
     {
-        if(other.CompareTag("Ball")){
-            Destroy(this.gameObject);
+        void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("Ball")){
+                Destroy(this.gameObject);
+            }
         }
-    }
-    void OnDestroy()
-    {
-        GameManager.Instance.starDestroyEvent?.Invoke();
+        void OnDestroy()
+        {
+            GameManager.Instance.starDestroyEvent?.Invoke();
+        }
     }
 }
