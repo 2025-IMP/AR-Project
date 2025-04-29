@@ -13,26 +13,22 @@ namespace IMP.UI
         private static GameUIManager s_Instance;
         public static GameUIManager Instance => s_Instance;
 
+        [SerializeField]
+        private UIBallSelection m_BallSelection;
+        public UIBallSelection BallSelection => m_BallSelection;
+
         public GameObject gameOverPanel;
         public GameObject stageClearPanel;
-        public TMP_Text ballCountText;
         public TMP_Text starCountText;
 
-        public Action<int> OnBallCountChanged;
-
-        void Awake()
+        private void Awake()
         {
             s_Instance = this;
         }
 
-        public void SetBallCount(int ballCount)
+        public void Initialize()
         {
-            ballCountText.text = $"Ball {ballCount}/{GameManager.Instance.StageData.BallPrefabs.Count}";
-        }
-
-        public void SetStarCount(int starCount)
-        {
-
+            m_BallSelection.Initialize();
         }
     }
 }

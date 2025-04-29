@@ -14,13 +14,12 @@ namespace IMP.Core
         void OnTriggerEnter(Collider other)
         {
             if(other.CompareTag("Ball")){
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
 
         void OnDestroy()
         {
-            GameManager.Instance.OnStarCollected?.Invoke();
         }
     }
 }

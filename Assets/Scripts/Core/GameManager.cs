@@ -8,8 +8,9 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using TrackableType = UnityEngine.XR.ARSubsystems.TrackableType;
 using UnityEngine.SceneManagement;
-using System;
 using IMP.UI;
+using System.Linq;
+using System.Collections;
 
 namespace IMP.Core
 {
@@ -37,27 +38,11 @@ namespace IMP.Core
         [SerializeField] private Slingshot m_Slingshot;
 
         private Structure m_Structure = null;
-        private Queue<Ball> m_BallQueue = new Queue<Ball>();
+        private Dictionary<BallType, int> m_BallDict = new Dictionary<BallType, int>();
+        public Dictionary<BallType, int> BallDict => m_BallDict;
 
         private GameState m_State = GameState.READY;
         public GameState State => m_State;
-
-        public Action OnStarCollected;
-
-        public void OnStarCollect()
-        {
-            
-        }
-
-        void OnEnable()
-        {
-            OnStarCollected += OnStarCollect;
-        }
-
-        void OnDisable()
-        {
-            OnStarCollected -= OnStarCollect;
-        }
 
         private void Awake()
         {
@@ -68,7 +53,6 @@ namespace IMP.Core
         {
             Initialize();
             PrepareStage();
-            PrepareBalls();
         }
 
         private void Update()
@@ -88,15 +72,23 @@ namespace IMP.Core
         {
             m_State = GameState.READY;
             m_Structure = null;
-            m_BallQueue.Clear();
+            m_BallDict.Clear();
 
             m_Slingshot.Initialize();
+            GameUIManager.Instance.Initialize();
         }
 
         private void PrepareStage()
         {
             m_StageData = StageManager.Instance.CurrStageData;
             m_StageData ??= m_DefaultStageData;
+
+            foreach (var ballData in m_StageData.BallDatas)
+            {
+                m_BallDict[ballData.Type] = ballData.Count;
+            }
+            GameUIManager.Instance.BallSelection.Config(m_BallDict);
+            GameUIManager.Instance.BallSelection.OnBallCellPressed(0);
         }
 
         private void BuildStructure(Vector2 screenPos)
@@ -116,33 +108,62 @@ namespace IMP.Core
                 );
 
                 m_State = GameState.BUILT;
+                StartCoroutine(SetThrowableCoroutine());
             }
         }
 
-        private void PrepareBalls()
+        private IEnumerator SetThrowableCoroutine()
         {
-            for (int i = 0; i < m_StageData.BallPrefabs.Count; i++)
-            {
-                m_BallQueue.Enqueue(m_StageData.BallPrefabs[i]);
-            }
-
-            GameUIManager.Instance.SetBallCount(m_BallQueue.Count);
+            yield return new WaitForSeconds(0.1f);
+            m_Slingshot.Throwable = true;
         }
 
-        public void SpawnNextBall()
+        public void SpawnBall(BallType type)
         {
-            if (m_BallQueue.Count > 0)
+            Ball ballPrefab = BallManager.GetBallPrefab(type);
+            Ball ball = Instantiate(ballPrefab);
+
+            m_Slingshot.SetCurrentBall(ball);
+        }
+
+        public void SyncBallCount()
+        {
+            GameUIManager.Instance.BallSelection.Synchronize(m_BallDict);
+        }
+
+        public void ReduceBallCount(BallType ballType)
+        {
+            int ballCount = m_BallDict[ballType];
+            ballCount -= 1;
+            m_BallDict[ballType] = ballCount;
+
+            GameUIManager.Instance.BallSelection.Synchronize(m_BallDict);
+
+            if (ballCount == 0)
             {
-                Ball nextBallPrefab = m_BallQueue.Dequeue();
-                m_Slingshot.SetCurrentBall(nextBallPrefab);
+                bool hasBall = false;
+                foreach (var ballData in m_BallDict)
+                {
+                    if (ballData.Value <= 0) continue;
+
+                    int cellIndex = GameUIManager.Instance.BallSelection.Cells.FindIndex(cell => cell.BallType == ballData.Key);
+                    GameUIManager.Instance.BallSelection.OnBallCellPressed(cellIndex);
+                    hasBall = true;
+
+                    Debug.Log($"cellIndex: {cellIndex}");
+
+                    break;
+                }
+
+                if (!hasBall)
+                {
+                    EndGame();
+                }
             }
             else
             {
-                m_Slingshot.SetCurrentBall(null);
-                EndGame();
+                SpawnBall(ballType);
             }
-
-            GameUIManager.Instance.SetBallCount(m_BallQueue.Count);
         }
 
         private void EndGame()

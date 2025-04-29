@@ -1,7 +1,11 @@
 /// Owner: Dongjin Kuk
 /// Description: This is the script for the slingshot. It throws the current ball.
 
+using System.Runtime.Serialization.Json;
+using IMP.Common;
+using IMP.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
@@ -27,19 +31,23 @@ namespace IMP.Core
 
         private bool m_Touching = false;
 
+        public bool Throwable = false;
+
         public void Initialize()
         {
             m_CurrentBall = null;
+            Throwable = false;
         }
 
         private void Update()
         {
+            if (!Throwable) return;
+
             HandleInput();
 
             if (m_Touching)
             {
-                Vector3 force = m_BallRoot.InverseTransformDirection(m_Force);
-                Debug.Log($"Force: {force}");
+                Vector3 force = m_BallRoot.rotation * m_Force;
                 m_TrajPrediction.Simulate(m_BallPrefab, m_BallRoot.position, force);
             }
             else
@@ -54,20 +62,19 @@ namespace IMP.Core
 
             var touches = Touch.activeTouches;
 
-            if (touches.Count == 1 && touches[0].phase == TouchPhase.Began)
+            if (touches.Count == 1 && !PointBlocker.IsOverUI(touches[0].screenPosition) && touches[0].phase == TouchPhase.Began)
             {
                 m_TouchPos = touches[0].screenPosition;
                 m_Touching = true;
             }
-            else if (touches.Count == 1 && touches[0].phase == TouchPhase.Stationary)
+            else if (touches.Count == 1 && m_Touching && touches[0].phase == TouchPhase.Stationary)
             {
                 m_DeltaPos = m_TouchPos - touches[0].screenPosition;
                 CalculateForce();
             }
             else if (
-                touches.Count == 1
+                touches.Count == 1 && m_Touching
                 && touches[0].phase == TouchPhase.Ended
-                && GameManager.Instance.State == GameManager.GameState.BUILT
             )
             {
                 m_DeltaPos = m_TouchPos - touches[0].screenPosition;
@@ -95,28 +102,31 @@ namespace IMP.Core
 
         public void SetCurrentBall(Ball ball)
         {
+            if (ball == null)
+            {
+                m_CurrentBall = null;
+                return;
+            }
+
+            if (m_CurrentBall != null)
+            {
+                Destroy(m_CurrentBall.gameObject);
+            }
+
             m_CurrentBall = ball;
+            ball.transform.SetParent(m_BallRoot);
+            ball.transform.position = m_BallRoot.position;
         }
 
         public void Throw()
         {
-            if (m_CurrentBall == null)
-            {
-                return;
-            }
+            Vector3 force = m_BallRoot.rotation * m_Force;
 
-            Vector3 force = m_BallRoot.InverseTransformDirection(m_Force);
-
-            Ball ball = Instantiate(m_CurrentBall);
-            ball.Throw(m_BallRoot.position, force);
-
+            BallType ballType = m_CurrentBall.Type;
+            m_CurrentBall.Throw(force);
             m_CurrentBall = null;
-            Invoke(nameof(RequestNextBall), 1.5f);
-        }
 
-        private void RequestNextBall()
-        {
-            GameManager.Instance.SpawnNextBall();
+            GameManager.Instance.ReduceBallCount(ballType);
         }
     }
 }

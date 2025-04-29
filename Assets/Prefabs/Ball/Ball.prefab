@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2390081905910938668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11275443, y: -0.17368954, z: 0.051055275}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7680e83d33c98b04fb240708fe5f36d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_BallType: 0
   m_Rigidbody: {fileID: 8126178445521191505}
   m_LifeTime: 5
 --- !u!33 &7080170119808571598

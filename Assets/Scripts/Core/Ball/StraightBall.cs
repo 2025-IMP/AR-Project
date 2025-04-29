@@ -15,14 +15,19 @@ namespace IMP.Core
         protected override void Awake()
         {
             base.Awake();
-            m_Rigidbody.useGravity = false; // 중력 아예 꺼버려
+            m_Rigidbody.useGravity = false;
         }
 
-        public override void Throw(Vector3 pos, Vector3 force)
+        public override void Simulate(Vector3 force)
+        {
+            m_Ghosted = true;
+            m_Rigidbody.AddForce(force, ForceMode.Impulse);
+        }
+
+        public override void Throw(Vector3 force)
         {
             m_Ghosted = false;
-            transform.position = pos;
-            m_Direction = force.normalized; // 방향만 저장
+            m_Direction = force.normalized;
 
             StartCoroutine(DestroyCoroutine());
         }

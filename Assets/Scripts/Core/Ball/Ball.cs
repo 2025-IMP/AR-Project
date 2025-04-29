@@ -6,8 +6,21 @@ using UnityEngine;
 
 namespace IMP.Core
 {
+    public enum BallType
+    {
+        NORMAL,
+        EXPLOSION,
+        HEAVY,
+        LIGHT,
+        STRAIGHT
+    }
+
     public class Ball : MonoBehaviour
     {
+        [SerializeField]
+        private BallType m_Type = BallType.NORMAL;
+        public BallType Type => m_Type;
+
         [SerializeField]
         protected Rigidbody m_Rigidbody;
 
@@ -17,6 +30,7 @@ namespace IMP.Core
         protected virtual void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
+            m_Rigidbody.useGravity = false;
         }
 
         protected bool m_Ghosted = false;
@@ -24,13 +38,14 @@ namespace IMP.Core
         public virtual void Simulate(Vector3 force)
         {
             m_Ghosted = true;
+            m_Rigidbody.useGravity = true;
             m_Rigidbody.AddForce(force, ForceMode.Impulse);
         }
 
-        public virtual void Throw(Vector3 pos, Vector3 force)
+        public virtual void Throw(Vector3 force)
         {
             m_Ghosted = false;
-            transform.position = pos;
+            m_Rigidbody.useGravity = true;
             m_Rigidbody.AddForce(force, ForceMode.Impulse);
 
             StartCoroutine(DestroyCoroutine());
