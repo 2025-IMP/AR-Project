@@ -45,6 +45,8 @@ namespace IMP.Core
         public virtual void Throw(Vector3 force)
         {
             m_Ghosted = false;
+            transform.SetParent(null);            
+
             m_Rigidbody.useGravity = true;
             m_Rigidbody.AddForce(force, ForceMode.Impulse);
 

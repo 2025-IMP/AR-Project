@@ -23,6 +23,12 @@ namespace IMP.Core
             CreatePhysicsScene();
         }
 
+        void Update()
+        {
+            float width = m_LineRenderer.endWidth;
+            m_LineRenderer.textureScale = new Vector2(1f / width, 1f);
+        }
+
         private void CreatePhysicsScene()
         {
             m_SimulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics3D));

@@ -1,11 +1,8 @@
 /// Owner: Dongjin Kuk
 /// Description: This is the script for the slingshot. It throws the current ball.
 
-using System.Runtime.Serialization.Json;
 using IMP.Common;
-using IMP.UI;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
