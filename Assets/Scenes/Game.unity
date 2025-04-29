@@ -2066,7 +2066,7 @@ PrefabInstance:
     - target: {fileID: 1885262838614658515, guid: f7cb9d3f554cf7848955c5dc0fcbadcd,
         type: 3}
       propertyPath: m_Parameters.colorGradient.ctime1
-      value: 26407
+      value: 62837
       objectReference: {fileID: 0}
     - target: {fileID: 1885262838614658515, guid: f7cb9d3f554cf7848955c5dc0fcbadcd,
         type: 3}
