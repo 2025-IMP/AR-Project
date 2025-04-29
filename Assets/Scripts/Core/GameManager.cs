@@ -50,6 +50,7 @@ namespace IMP.Core
         private Structure m_StructurePrefab;
         [SerializeField] private GameUImanager gameUiManager;
         private int ballCount;
+
         private void Awake()
         {
             s_Instance = this;
@@ -72,13 +73,13 @@ namespace IMP.Core
 
         private void Start()
         {
+            m_StageData = StageManager.Instance.CurrStageData;
             Initialize();
+            PrepareBalls();
         }
 
         private void Update()
         {
-            //gameUiManager.ballCountText.text = "ball "+ballCount+"/"+StageData1.BallCount;
-
             var touches = Touch.activeTouches;
 
             if (touches.Count == 1 && touches[0].phase == TouchPhase.Began)
@@ -121,7 +122,7 @@ namespace IMP.Core
 
         private void PrepareBalls()
         {
-            for (int i = 0; i < m_StageData.BallCount; i++)
+            for (int i = 0; i < m_StageData.BallPrefabs.Count; i++)
             {
                 int index = Random.Range(0, m_StageData.BallPrefabs.Count);
                 Ball ball = Instantiate(m_StageData.BallPrefabs[index]);
