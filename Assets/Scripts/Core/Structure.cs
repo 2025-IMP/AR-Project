@@ -15,6 +15,7 @@ namespace IMP.Core
 
         [SerializeField]
         private Transform m_StarRoot;
+        public Transform StarRoot => m_StarRoot;
         private List<Star> m_Stars = new List<Star>();
 
         public void Initialize()

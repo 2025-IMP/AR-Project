@@ -17,9 +17,12 @@ namespace IMP.UI
         private UIBallSelection m_BallSelection;
         public UIBallSelection BallSelection => m_BallSelection;
 
+        [SerializeField]
+        private UIStarCollection m_StarCollection;
+        public UIStarCollection StarCollection => m_StarCollection;
+
         public GameObject gameOverPanel;
         public GameObject stageClearPanel;
-        public TMP_Text starCountText;
 
         private void Awake()
         {
@@ -29,6 +32,7 @@ namespace IMP.UI
         public void Initialize()
         {
             m_BallSelection.Initialize();
+            m_StarCollection.Initialize();
         }
     }
 }

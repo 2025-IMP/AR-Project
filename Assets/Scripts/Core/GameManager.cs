@@ -44,6 +44,9 @@ namespace IMP.Core
         private GameState m_State = GameState.READY;
         public GameState State => m_State;
 
+        private int m_StarCount = 0;
+        public int StarCount => m_StarCount;
+
         private void Awake()
         {
             s_Instance = this;
@@ -73,6 +76,7 @@ namespace IMP.Core
             m_State = GameState.READY;
             m_Structure = null;
             m_BallDict.Clear();
+            m_StarCount = 0;
 
             m_Slingshot.Initialize();
             GameUIManager.Instance.Initialize();
@@ -89,6 +93,9 @@ namespace IMP.Core
             }
             GameUIManager.Instance.BallSelection.Config(m_BallDict);
             GameUIManager.Instance.BallSelection.OnBallCellPressed(0);
+
+            int starCount = m_StageData.StructurePrefab.StarRoot.childCount;
+            GameUIManager.Instance.StarCollection.Config(starCount);
         }
 
         private void BuildStructure(Vector2 screenPos)
@@ -164,6 +171,12 @@ namespace IMP.Core
             {
                 SpawnBall(ballType);
             }
+        }
+
+        public void CollectStar()
+        {
+            m_StarCount += 1;
+            GameUIManager.Instance.StarCollection.SetStarsActive(m_StarCount);
         }
 
         private void EndGame()

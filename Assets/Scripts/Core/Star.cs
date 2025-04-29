@@ -1,6 +1,7 @@
 /// Owner: Minseong Kim
 /// Description: Defines the logic when the star has been collided.
 
+using IMP.UI;
 using UnityEngine;
 
 namespace IMP.Core
@@ -15,11 +16,8 @@ namespace IMP.Core
         {
             if(other.CompareTag("Ball")){
                 Destroy(gameObject);
+                GameManager.Instance.CollectStar();
             }
-        }
-
-        void OnDestroy()
-        {
         }
     }
 }
