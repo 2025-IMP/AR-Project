@@ -125,10 +125,8 @@ namespace IMP.Core
         {
             for (int i = 0; i < m_StageData.BallPrefabs.Count; i++)
             {
-                int index = Random.Range(0, m_StageData.BallPrefabs.Count);
-                Ball ball = Instantiate(m_StageData.BallPrefabs[index]);
-                ball.gameObject.SetActive(false);
-                m_BallQueue.Enqueue(ball);
+                Ball ballPrefab = Instantiate(m_StageData.BallPrefabs[i]);
+                m_BallQueue.Enqueue(ballPrefab);
                 Debug.Log(""+m_BallQueue.Count);
             }
 
@@ -141,8 +139,6 @@ namespace IMP.Core
             if (m_BallQueue.Count > 0)
             {
                 m_CurrentBall = m_BallQueue.Dequeue();
-                m_CurrentBall.transform.position = m_BallSpawnPoint.position;
-                m_CurrentBall.gameObject.SetActive(true);
                 m_Slingshot.SetCurrentBall(m_CurrentBall);
             }
             else
