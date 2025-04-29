@@ -27,17 +27,9 @@ namespace IMP.Core
         public override void Throw(Vector3 force)
         {
             m_Ghosted = false;
-            m_Direction = force.normalized;
+            m_Rigidbody.AddForce(force, ForceMode.Impulse);
 
             StartCoroutine(DestroyCoroutine());
-        }
-
-        private void Update()
-        {
-            if (!m_Ghosted)
-            {
-                transform.position += m_Direction * m_Speed * Time.deltaTime;
-            }
         }
     }
 }

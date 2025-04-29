@@ -42,13 +42,14 @@ namespace IMP.Core
         private void Update()
         {
             if (!Throwable) return;
+            if (m_CurrentBall == null) return;
 
             HandleInput();
 
             if (m_Touching)
             {
                 Vector3 force = m_BallRoot.rotation * m_Force;
-                m_TrajPrediction.Simulate(m_BallPrefab, m_BallRoot.position, force);
+                m_TrajPrediction.Simulate(m_CurrentBall, m_BallRoot.position, force);
             }
             else
             {

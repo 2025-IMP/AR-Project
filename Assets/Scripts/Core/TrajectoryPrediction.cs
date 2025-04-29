@@ -45,22 +45,22 @@ namespace IMP.Core
             m_LineRenderer.positionCount = 0;
         }
 
-        public void Simulate(Ball ballPrefab, Vector3 pos, Vector3 velocity)
+        public void Simulate(Ball ball, Vector3 pos, Vector3 velocity)
         {
-            var ball = Instantiate(ballPrefab, pos, Quaternion.identity);
-            SceneManager.MoveGameObjectToScene(ball.gameObject, m_SimulationScene);
+            var sball = Instantiate(ball, pos, Quaternion.identity);
+            SceneManager.MoveGameObjectToScene(sball.gameObject, m_SimulationScene);
 
-            ball.Simulate(velocity);
+            sball.Simulate(velocity);
 
             m_LineRenderer.positionCount = m_MaxPhysicsFrameIterations;
 
             for (int i = 0; i < m_MaxPhysicsFrameIterations; i++)
             {
                 m_PhysicsScene.Simulate(Time.fixedDeltaTime);
-                m_LineRenderer.SetPosition(i, ball.transform.position);
+                m_LineRenderer.SetPosition(i, sball.transform.position);
             }
 
-            Destroy(ball.gameObject);
+            Destroy(sball.gameObject);
         }
     }
 }
