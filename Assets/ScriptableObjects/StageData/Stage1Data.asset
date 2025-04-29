@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Stage1Data
   m_EditorClassIdentifier: 
   BallPrefabs:
-  - {fileID: -6868773981371741450, guid: 888401547bcda194cbda3d64341eb692, type: 3}
-  - {fileID: -6868773981371741450, guid: 888401547bcda194cbda3d64341eb692, type: 3}
+  - {fileID: -1495913810139959920, guid: d918463e3a541544eaccf0b9fb333bec, type: 3}
+  - {fileID: -4495199981901083174, guid: e43526fe1e045ed498fd8c3cc7d4d4fb, type: 3}
   - {fileID: -6868773981371741450, guid: 888401547bcda194cbda3d64341eb692, type: 3}
   StructurePrefab: {fileID: 8938521218369778630, guid: 8c76fb5d71bc9144783510a123246a36,
     type: 3}
-  BallCount: 5

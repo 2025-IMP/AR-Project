@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d7b6793cdd278a4084fd1e487655b7e
+guid: b69ab7dc4a09f094885bf950a65c44c3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -110,5 +110,5 @@ AssetOrigin:
   productId: 73764
   packageName: Simple Gems and Items Ultimate Animated Customizable Pack
   packageVersion: 1.3
-  assetPath: Assets/Models/5SideDiamond.fbx
+  assetPath: Assets/Models/Bomb.fbx
   uploadId: 739389
