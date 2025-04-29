@@ -529,8 +529,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 632575896}
   stageClearPanel: {fileID: 956840126}
-  ballCountText: {fileID: 0}
-  starCountText: {fileID: 0}
+  ballCountText: {fileID: 1861517663}
+  starCountText: {fileID: 1560364634}
 --- !u!4 &776095552
 Transform:
   m_ObjectHideFlags: 0

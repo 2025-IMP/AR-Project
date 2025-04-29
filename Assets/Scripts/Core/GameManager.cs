@@ -32,6 +32,7 @@ namespace IMP.Core
         [SerializeField] private StageData StageData2;
         [SerializeField] private StageData StageData3;        
         private StageData m_StageData; // 추가 한 코드
+        public StageData StageData => m_StageData;
 
         [SerializeField] private Transform m_BallSpawnPoint;
 
@@ -136,6 +137,8 @@ namespace IMP.Core
                 m_BallQueue.Enqueue(ball);
                 Debug.Log(""+m_BallQueue.Count);
             }
+
+            gameUiManager.OnBallCountChanged?.Invoke(m_BallQueue.Count);
         }
 
 
@@ -152,6 +155,8 @@ namespace IMP.Core
             {
                 EndGame();
             }
+
+            gameUiManager.OnBallCountChanged?.Invoke(m_BallQueue.Count);
         }
         private void EndGame()
         {
