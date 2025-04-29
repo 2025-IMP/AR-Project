@@ -17,6 +17,7 @@ namespace IMP.UI
         private void OnButtonClicked()
         {
             SceneManager.LoadScene(m_StageSceneName);
+            Debug.Log("" + m_StageSceneName);
         }
     }
 }

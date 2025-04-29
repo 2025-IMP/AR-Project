@@ -56,7 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "AR-Project-main.sln",
+    "dotnet.defaultSolution": "AR-Project.sln",
     "editor.defaultFormatter": "ms-dotnettools.csharp",
     "editor.formatOnSave": false,
     "[csharp]": {

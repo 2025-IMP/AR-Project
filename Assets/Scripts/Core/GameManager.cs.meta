@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: 7ce9b7b0982191a49b1d0c69136f7cbc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ARRaycastManager: {instanceID: 0}
+  - m_StageData: {instanceID: 0}
+  - m_BallSpawnPoint: {instanceID: 0}
+  - m_Slingshot: {instanceID: 0}
+  - m_StructurePrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
