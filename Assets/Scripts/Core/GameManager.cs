@@ -75,6 +75,7 @@ namespace IMP.Core
         {
             m_StageData = StageManager.Instance.CurrStageData;
             Initialize();
+            PrepareStage();
             PrepareBalls();
         }
 
@@ -97,6 +98,11 @@ namespace IMP.Core
             m_Structure = null;
             m_BallQueue.Clear();
             m_CurrentBall = null;
+        }
+
+        private void PrepareStage()
+        {
+            m_StructurePrefab = m_StageData.StructurePrefab;
         }
 
         private void BuildStructure(Vector2 screenPos)
