@@ -23,6 +23,7 @@ namespace IMP.Core
 
             for (int i = 0; i < colliders.Length; i++)
             {
+                if (colliders[i].transform.parent == null) continue;
                 if (!colliders[i].transform.parent.CompareTag("Block")) continue;
 
                 if (colliders[i].transform.parent.TryGetComponent(out Block block))

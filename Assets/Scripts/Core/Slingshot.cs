@@ -28,6 +28,7 @@ namespace IMP.Core
 
         private bool m_Touching = false;
 
+        [HideInInspector]
         public bool Throwable = false;
 
         public void Initialize()
