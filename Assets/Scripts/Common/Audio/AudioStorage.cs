@@ -7,6 +7,10 @@ using UnityEngine;
 public enum AudioType
 {
     TOUCH,
+    Throw, 
+    IMPACT,
+    STAR,
+    
 
 }
 
