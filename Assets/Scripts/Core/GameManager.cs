@@ -8,6 +8,7 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using TrackableType = UnityEngine.XR.ARSubsystems.TrackableType;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
+using System.Collections;
 
 namespace IMP.Core
 {
@@ -55,21 +56,6 @@ namespace IMP.Core
         private void Awake()
         {
             s_Instance = this;
-            
-            if(LoadSceneButton.stageNumber == 1){
-                m_StructurePrefab = stagePrefab1;
-                m_StageData = StageData1;
-
-                ballCount = StageData1.BallCount;
-            }else if(LoadSceneButton.stageNumber == 2){
-                 m_StructurePrefab = stagePrefab2;
-                m_StageData = StageData2;
-                ballCount = StageData2.BallCount;
-            }else if(LoadSceneButton.stageNumber == 3){
-                 m_StructurePrefab = stagePrefab3;
-                m_StageData = StageData3;
-                ballCount = StageData3.BallCount;
-            }
         }
 
         private void Start()
@@ -122,9 +108,16 @@ namespace IMP.Core
                     dist / 0.23f
                 );
 
-                m_State = GameState.BUILT;
+                StartCoroutine(ChangeGameStateNextFrame(GameState.BUILT));
                 SpawnNextBall();
             }
+        }
+
+        private IEnumerator ChangeGameStateNextFrame(GameState state)
+        {
+            yield return new WaitForEndOfFrame();
+
+            m_State = state;
         }
 
         private void PrepareBalls()
@@ -153,6 +146,7 @@ namespace IMP.Core
             }
             else
             {
+                m_Slingshot.SetCurrentBall(null);
                 EndGame();
             }
 
@@ -164,7 +158,7 @@ namespace IMP.Core
             Debug.Log("모든 공을 사용했습니다! 게임 끝!");
 
             //일단 게임 오버만
-            //gameUiManager.gameOverPanel.SetActive(true);
+            gameUiManager.gameOverPanel.SetActive(true);
            
         }
         public void ToStageScene(){

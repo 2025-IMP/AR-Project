@@ -45,6 +45,8 @@ namespace IMP.Core
 
         private void HandleInput()
         {
+            if (m_CurrentBall == null) return;
+
             var touches = Touch.activeTouches;
 
             if (touches.Count == 1 && touches[0].phase == TouchPhase.Began)
@@ -60,12 +62,11 @@ namespace IMP.Core
             else if (
                 touches.Count == 1
                 && touches[0].phase == TouchPhase.Ended
-            // && GameManager.Instance.State == GameManager.GameState.BUILT
+                && GameManager.Instance.State == GameManager.GameState.BUILT
             )
             {
-                // m_DeltaPos = m_TouchPos - touches[0].screenPosition;
-                // CalculateForce();
-                // Throw();
+                m_DeltaPos = m_TouchPos - touches[0].screenPosition;
+                CalculateForce();
 
                 m_Touching = false;
                 Throw();

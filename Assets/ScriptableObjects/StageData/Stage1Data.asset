@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallPrefabs:
   - {fileID: -6868773981371741450, guid: 888401547bcda194cbda3d64341eb692, type: 3}
+  - {fileID: -6868773981371741450, guid: 888401547bcda194cbda3d64341eb692, type: 3}
+  - {fileID: -6868773981371741450, guid: 888401547bcda194cbda3d64341eb692, type: 3}
   StructurePrefab: {fileID: 8938521218369778630, guid: 8c76fb5d71bc9144783510a123246a36,
     type: 3}
   BallCount: 5

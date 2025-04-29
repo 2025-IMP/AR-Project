@@ -9,6 +9,5 @@ namespace IMP.Core
     {
         public List<Ball> BallPrefabs;
         public Structure StructurePrefab;
-        public int BallCount;
     }
 }
