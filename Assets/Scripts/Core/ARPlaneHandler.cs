@@ -11,7 +11,7 @@ namespace IMP.Core
     {
         [SerializeField]
         private ARSession m_ARSession;
-        
+
         void OnDisable()
         {
             m_ARSession.Reset();

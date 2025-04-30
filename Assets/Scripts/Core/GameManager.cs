@@ -64,6 +64,8 @@ namespace IMP.Core
 
             if (touches.Count == 1 && touches[0].phase == TouchPhase.Began)
             {
+                AudioManager.Instance.PlayOneShot(AudioType.TOUCH); //D.h
+
                 if (m_State == GameState.READY)
                 {
                     BuildStructure(touches[0].screenPosition);

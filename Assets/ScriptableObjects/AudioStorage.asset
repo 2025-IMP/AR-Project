@@ -9,7 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 47c57f488e77d80468b818df84b4cf47, type: 3}
   m_Name: AudioStorage
-  m_EditorClassIdentifier: Assembly-CSharp::AudioStorage
-  AudioDatas: []
+  m_EditorClassIdentifier: 
+  AudioDatas:
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 369d2f0b98adc104290403ea651e44b8, type: 3}
+  - Type: 0
+    Clip: {fileID: 8300000, guid: 5a7096971783fd848a88d8d6172be9b9, type: 3}
+  - Type: 3
+    Clip: {fileID: 8300000, guid: 469858b932451a343940d5e4c65319c8, type: 3}
+  - Type: 5
+    Clip: {fileID: 8300000, guid: b53d9079f98130a45b7daa7239ae954d, type: 3}
+  - Type: 4
+    Clip: {fileID: 8300000, guid: d2c9336c464dde542876f298b551a21d, type: 3}
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 631c920ccf6a10a43868e5c0f0145e8f, type: 3}

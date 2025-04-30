@@ -19,6 +19,8 @@ namespace IMP.Core
 
         protected virtual void OnCollisionEnter(Collision collision)
         {
+            AudioManager.Instance.PlayOneShot(AudioType.IMPACT);
+
             if (collision.collider.CompareTag("Ball"))
             {
                 m_Rigidbody.useGravity = true;

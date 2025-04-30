@@ -7,8 +7,7 @@ namespace IMP.Core
 {
     public class StageManager : Singleton<StageManager>
     {
-        [SerializeField]
-        private StageData[] m_StageDatas;
+        [SerializeField] private StageData[] m_StageDatas;
 
         private StageData m_CurrStageData;
         public StageData CurrStageData => m_CurrStageData;

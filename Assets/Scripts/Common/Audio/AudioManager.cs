@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IMP.Common
 {
@@ -23,14 +24,28 @@ namespace IMP.Common
         private Dictionary<AudioCategory, float> m_VolumeDict = new Dictionary<AudioCategory, float>();
         public Dictionary<AudioCategory, float> VolumeDict => m_VolumeDict;
 
-        [SerializeField]
-        private AudioSource m_AudioSource;
+        [SerializeField] private AudioSource m_BGMSource;
+        [SerializeField] private AudioClip m_IntroBGM;
 
         private Dictionary<AudioType, AudioClip> m_AudioDict = new Dictionary<AudioType, AudioClip>();
 
+        protected override void Awake()
+        {
+            base.Awake(); // Singleton 초기화
+
+            // 효과음 초기화
+            m_AudioDict.Clear();
+            foreach (var data in m_Storage.AudioDatas)
+            {
+                m_AudioDict[data.Type] = data.Clip;
+            }
+        }
+
         private void Start()
         {
-            for (int i = 0; i < m_Storage.AudioDatas.Count; i++)
+            string sceneName = SceneManager.GetActiveScene().name;
+
+            if (sceneName.Contains("Game") || sceneName.Contains("Stage"))
             {
                 m_AudioDict.Add(m_Storage.AudioDatas[i].Type, m_Storage.AudioDatas[i].Clip);
             }
