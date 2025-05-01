@@ -1,6 +1,7 @@
 /// Owner: Dongjin Kuk
 /// Description: This script is for block. It defines the block of the structure.
 
+using IMP.Common;
 using UnityEngine;
 
 namespace IMP.Core
@@ -19,8 +20,6 @@ namespace IMP.Core
 
         protected virtual void OnCollisionEnter(Collision collision)
         {
-            AudioManager.Instance.PlayOneShot(AudioType.IMPACT);
-
             if (collision.collider.CompareTag("Ball"))
             {
                 m_Rigidbody.useGravity = true;

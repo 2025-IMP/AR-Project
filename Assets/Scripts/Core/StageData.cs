@@ -16,8 +16,8 @@ namespace IMP.Core
     [CreateAssetMenu(fileName = "StageData", menuName = "Scriptable Objects/StageData")]
     public class StageData : ScriptableObject
     {
+        public string Name;
         public List<BallData> BallDatas;
-        public List<MissionData> MissionDatas;
         public Structure StructurePrefab;
         public int star_NumberOfStars;
     }

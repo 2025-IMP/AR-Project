@@ -2,6 +2,7 @@
 /// Description: This script is for ball. It throws and simulate physics itself.
 
 using System.Collections;
+using IMP.Common;
 using UnityEngine;
 
 namespace IMP.Core
@@ -26,6 +27,8 @@ namespace IMP.Core
 
         [SerializeField]
         private float m_LifeTime = 5f;
+
+        private bool m_Collided = false;
 
         protected virtual void Awake()
         {
@@ -57,6 +60,12 @@ namespace IMP.Core
         {
             if (m_Ghosted)
                 return;
+
+            if (!m_Collided)
+            {
+                AudioManager.Instance.PlayOneShot(AudioType.IMPACT);
+                m_Collided = true;
+            }
         }
 
         protected virtual IEnumerator DestroyCoroutine()

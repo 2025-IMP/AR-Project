@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb3157e89e88ea40a77934598e2cd0d, type: 3}
   m_Name: Stage3Data
   m_EditorClassIdentifier: 
+  Name: stage3
   BallDatas:
   - Type: 0
     Count: 1

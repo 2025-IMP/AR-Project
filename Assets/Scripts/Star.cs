@@ -14,6 +14,6 @@ public class Star : MonoBehaviour
     }
     void OnDestroy()
     {
-        GameManager.Instance.starDestroyEvent?.Invoke();
+        GameManager.Instance.CollectStar();
     }
 }

@@ -32,7 +32,7 @@ namespace IMP.UI
 
         public void SetStarsActive(int starCount)
         {
-            for (int i = 0; i <= starCount; i++)
+            for (int i = 0; i < starCount; i++)
             {
                 m_Stars[i].SetActive(true);
             }

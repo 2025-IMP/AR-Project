@@ -125,6 +125,8 @@ namespace IMP.Core
             m_CurrentBall.Throw(force);
             m_CurrentBall = null;
 
+            AudioManager.Instance.PlayOneShot(AudioType.THROW);
+
             GameManager.Instance.ReduceBallCount(ballType);
         }
     }

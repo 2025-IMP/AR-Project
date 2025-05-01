@@ -11,6 +11,9 @@ using UnityEngine.SceneManagement;
 using IMP.UI;
 using System.Linq;
 using System.Collections;
+using IMP.Common;
+using System;
+using TMPro;
 
 namespace IMP.Core
 {
@@ -47,6 +50,8 @@ namespace IMP.Core
         private int m_StarCount = 0;
         public int StarCount => m_StarCount;
 
+        private bool m_Clearing = false;
+
         private void Awake()
         {
             s_Instance = this;
@@ -56,6 +61,15 @@ namespace IMP.Core
         {
             Initialize();
             PrepareStage();
+        }
+
+        void OnEnable()
+        {
+            AudioManager.Instance.BGMSource.Stop();
+        }
+        void OnDisable()
+        {
+            AudioManager.Instance.BGMSource.Play();
         }
 
         private void Update()
@@ -79,6 +93,7 @@ namespace IMP.Core
             m_Structure = null;
             m_BallDict.Clear();
             m_StarCount = 0;
+            m_Clearing = false;
 
             m_Slingshot.Initialize();
             GameUIManager.Instance.Initialize();
@@ -155,18 +170,17 @@ namespace IMP.Core
                 {
                     if (ballData.Value <= 0) continue;
 
-                    int cellIndex = GameUIManager.Instance.BallSelection.Cells.FindIndex(cell => cell.BallType == ballData.Key);
-                    GameUIManager.Instance.BallSelection.OnBallCellPressed(cellIndex);
                     hasBall = true;
 
-                    Debug.Log($"cellIndex: {cellIndex}");
+                    int cellIndex = GameUIManager.Instance.BallSelection.Cells.FindIndex(cell => cell.BallType == ballData.Key);
+                    GameUIManager.Instance.BallSelection.OnBallCellPressed(cellIndex);
 
                     break;
                 }
 
                 if (!hasBall)
                 {
-                    EndGame();
+                    StartCoroutine(EndGame());
                 }
             }
             else
@@ -179,14 +193,51 @@ namespace IMP.Core
         {
             m_StarCount += 1;
             GameUIManager.Instance.StarCollection.SetStarsActive(m_StarCount);
+
+            if (m_StarCount >= m_StageData.star_NumberOfStars)
+            {
+                ClearGame();
+            }
         }
 
-        private void EndGame()
+        public IEnumerator EndGame()
         {
-            m_State = GameState.CLEAR;
-            GameUIManager.Instance.gameOverPanel.SetActive(true);
+            if (m_Clearing) yield break;
 
+            m_Clearing = true;
+
+            yield return new WaitForSeconds(3f);
+
+            if (m_State == GameState.CLEAR) yield break;
+
+            if (m_StarCount >= m_StageData.star_NumberOfStars)
+            {
+                ClearGame();
+            }
+            else
+            {
+                GameOver();
+            }
         }
+
+        private void ClearGame()
+        {
+            m_Clearing = true;
+            m_State = GameState.CLEAR;
+            AudioManager.Instance.PlayOneShot(AudioType.GAME_CLEAR);
+            GameUIManager.Instance.stageClearPanel.SetActive(true);
+
+            PlayerPrefs.SetInt(m_StageData.Name, 1);
+        }
+
+        private void GameOver()
+        {
+            m_Clearing = true;
+            m_State = GameState.CLEAR;
+            AudioManager.Instance.PlayOneShot(AudioType.GAME_OVER);
+            GameUIManager.Instance.gameOverPanel.SetActive(true);
+        }
+
         public void ToStageScene()
         {
             SceneManager.LoadSceneAsync("StageScene");

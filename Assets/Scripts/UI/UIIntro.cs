@@ -1,6 +1,7 @@
 /// Owner: Dongjin Kuk
 /// Description: It controls the Intro Panel in Intro scene.
 
+using IMP.Common;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,14 @@ namespace IMP.UI
     public class UIIntro : MonoBehaviour
     {
         [SerializeField] private GameObject m_SettingsPanel;
+
+        void Start()
+        {
+#if UNITY_EDITOR
+            PlayerPrefs.DeleteAll();
+#endif
+            AudioManager.Instance.PlayBGM(AudioManager.Instance.IntroBGM);
+        }
 
         public void OnStartButtonPressed()
         {
