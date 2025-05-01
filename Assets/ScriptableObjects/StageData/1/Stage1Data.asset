@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 26257ecc286714e79a1cf4cdb4328932, type: 2}
   StructurePrefab: {fileID: 8938521218369778630, guid: 8c76fb5d71bc9144783510a123246a36,
     type: 3}
+  star_NumberOfStars: 1

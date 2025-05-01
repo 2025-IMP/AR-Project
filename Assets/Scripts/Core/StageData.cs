@@ -19,5 +19,6 @@ namespace IMP.Core
         public List<BallData> BallDatas;
         public List<MissionData> MissionDatas;
         public Structure StructurePrefab;
+        public int star_NumberOfStars;
     }
 }

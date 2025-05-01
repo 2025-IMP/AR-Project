@@ -19,3 +19,4 @@ MonoBehaviour:
     Count: 2
   StructurePrefab: {fileID: 8938521218369778630, guid: 7e9eb307ca464fb48b1b27b80e4163ff,
     type: 3}
+  star_NumberOfStars: 1
