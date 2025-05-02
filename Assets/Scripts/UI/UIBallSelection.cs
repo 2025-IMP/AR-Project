@@ -55,6 +55,7 @@ namespace IMP.UI
         {
             UIBallCell selectedCell = m_Cells[index];
             if (selectedCell.Selected) return;
+            if (selectedCell.CountText.text.Equals("0")) return;
 
             foreach (UIBallCell cell in m_Cells)
             {

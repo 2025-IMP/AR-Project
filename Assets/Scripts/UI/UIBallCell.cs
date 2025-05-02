@@ -11,6 +11,7 @@ namespace IMP.UI
         public BallType BallType => m_BallType;
 
         [SerializeField] private TMP_Text m_CountText;
+        public TMP_Text CountText => m_CountText;
         [SerializeField] private Image m_SelectedImage;
         [SerializeField] private Image m_BallImage;
 
