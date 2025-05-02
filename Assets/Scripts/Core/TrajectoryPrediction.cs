@@ -29,6 +29,9 @@ namespace IMP.Core
             m_LineRenderer.textureScale = new Vector2(1f / width, 1f);
         }
 
+        /// <summary>
+        /// Create physics scene where to simulate ball's physics.
+        /// </summary>
         private void CreatePhysicsScene()
         {
             m_SimulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics3D));
@@ -51,6 +54,12 @@ namespace IMP.Core
             m_LineRenderer.positionCount = 0;
         }
 
+        /// <summary>
+        /// Simulate the ball's physics and draw it's trajectory by LineRenderer.
+        /// </summary>
+        /// <param name="ball"></param>
+        /// <param name="pos"></param>
+        /// <param name="velocity"></param>
         public void Simulate(Ball ball, Vector3 pos, Vector3 velocity)
         {
             var sball = Instantiate(ball, pos, Quaternion.identity);

@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Handles the settings panel.
+
 using IMP.Common;
 using UnityEngine;
 using UnityEngine.UI;

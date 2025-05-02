@@ -35,6 +35,7 @@ namespace IMP.Core
         {
             m_CurrentBall = null;
             Throwable = false;
+            m_TrajPrediction.StopSimulation();
         }
 
         private void Update()
@@ -117,6 +118,9 @@ namespace IMP.Core
             ball.transform.position = m_BallRoot.position;
         }
 
+        /// <summary>
+        /// Throw the current ball. It invokes when the player finished dragging.
+        /// </summary>
         public void Throw()
         {
             Vector3 force = m_BallRoot.rotation * m_Force;

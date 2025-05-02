@@ -24,7 +24,6 @@ namespace IMP.Core
             m_Blocks.ForEach(block => block.Initialize());
 
             m_Stars = m_StarRoot.GetComponentsInChildren<Star>().ToList();
-            m_Stars.ForEach(star => star.Initialize());
         }
     }
 }

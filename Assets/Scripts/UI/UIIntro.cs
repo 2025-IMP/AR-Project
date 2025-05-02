@@ -14,7 +14,9 @@ namespace IMP.UI
 
         void Start()
         {
+#if UNITY_EDITOR
             PlayerPrefs.DeleteAll();
+#endif
             AudioManager.Instance.PlayBGM(AudioManager.Instance.IntroBGM);
         }
 

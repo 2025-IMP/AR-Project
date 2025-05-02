@@ -1,25 +1,20 @@
 /// Owner: Minseong Kim
-/// Description: Defines the logic when the star has been collided.
+/// Star in Structure; Defines the star's life cycle.
 
-using IMP.Common;
-using IMP.UI;
+using IMP.Core;
 using UnityEngine;
 
-namespace IMP.Core
+public class Star : MonoBehaviour
 {
-    public class Star : MonoBehaviour
+    void OnTriggerEnter(Collider other)
     {
-        public void Initialize()
+        if (other.CompareTag("Ball"))
         {
+            Destroy(this.gameObject);
         }
-
-        void OnTriggerEnter(Collider other)
-        {
-            if(other.CompareTag("Ball")){
-                AudioManager.Instance.PlayOneShot(AudioType.STAR);
-                Destroy(gameObject);
-                GameManager.Instance.CollectStar();
-            }
-        }
+    }
+    void OnDestroy()
+    {
+        GameManager.Instance.CollectStar();
     }
 }

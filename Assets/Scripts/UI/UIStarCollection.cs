@@ -1,3 +1,6 @@
+/// Owner: Minseong Kim
+/// Handle the current stage's star UI.
+
 using System.Collections.Generic;
 using UnityEngine;
 

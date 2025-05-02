@@ -1,3 +1,6 @@
+/// Owner: Dongjin Kuk
+/// Block touch events when the user touches UI.
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;

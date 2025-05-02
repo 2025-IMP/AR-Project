@@ -30,6 +30,7 @@ namespace Utility_For_iOS
 
         private void OnGUI()
         {
+
             GUI.skin.label.fontSize = fontSize;
             GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
             GUILayout.Label("\n" + string.Join("\n", _myLogQueue.ToArray()));

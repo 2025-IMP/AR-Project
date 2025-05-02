@@ -1,3 +1,6 @@
+/// Owner: Minseong Kim
+/// Represents the ball info.
+
 using IMP.Core;
 using TMPro;
 using UnityEngine;

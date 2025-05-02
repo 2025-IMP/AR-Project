@@ -1,10 +1,9 @@
-/// Owner: Dongjin Kuk
+/// Owner: Donghun Lee
 /// Description: This script manages the audio system of the game.
 /// The game plays an audio by using this script.
 
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace IMP.Common
 {

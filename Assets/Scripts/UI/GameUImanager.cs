@@ -1,9 +1,6 @@
 /// Owner: Minseong Kim
 /// Description: It manages the UIs in the game.
 
-using System;
-using IMP.Core;
-using TMPro;
 using UnityEngine;
 
 namespace IMP.UI

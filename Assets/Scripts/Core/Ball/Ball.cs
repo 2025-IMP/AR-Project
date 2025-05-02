@@ -34,17 +34,29 @@ namespace IMP.Core
         {
             m_Rigidbody = GetComponent<Rigidbody>();
             m_Rigidbody.useGravity = false;
+
+            gameObject.layer = LayerMask.NameToLayer("Ghost");
         }
 
         protected bool m_Ghosted = false;
 
+        /// <summary>
+        /// Simulate this ball in physics scene.
+        /// </summary>
+        /// <param name="force"></param>
         public virtual void Simulate(Vector3 force)
         {
             m_Ghosted = true;
             m_Rigidbody.useGravity = true;
             m_Rigidbody.AddForce(force, ForceMode.Impulse);
+
+            gameObject.layer = LayerMask.NameToLayer("Ball");
         }
 
+        /// <summary>
+        /// Throw this ball by slingshot.
+        /// </summary>
+        /// <param name="force"></param>
         public virtual void Throw(Vector3 force)
         {
             m_Ghosted = false;
@@ -52,6 +64,8 @@ namespace IMP.Core
 
             m_Rigidbody.useGravity = true;
             m_Rigidbody.AddForce(force, ForceMode.Impulse);
+
+            gameObject.layer = LayerMask.NameToLayer("Ball");
 
             StartCoroutine(DestroyCoroutine());
         }

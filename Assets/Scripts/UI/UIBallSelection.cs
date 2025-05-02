@@ -1,3 +1,6 @@
+/// Owner: Minseong Kim
+/// Represents the ball cells of the current stage.
+
 using System.Collections.Generic;
 using System.Linq;
 using IMP.Core;

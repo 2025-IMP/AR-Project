@@ -22,12 +22,16 @@ namespace IMP.Core
         {
             m_Ghosted = true;
             m_Rigidbody.AddForce(force, ForceMode.Impulse);
+
+            gameObject.layer = LayerMask.NameToLayer("Ball");
         }
 
         public override void Throw(Vector3 force)
         {
             m_Ghosted = false;
             m_Rigidbody.AddForce(force, ForceMode.Impulse);
+
+            gameObject.layer = LayerMask.NameToLayer("Ball");
 
             StartCoroutine(DestroyCoroutine());
         }

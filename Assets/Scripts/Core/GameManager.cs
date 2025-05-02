@@ -9,11 +9,8 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using TrackableType = UnityEngine.XR.ARSubsystems.TrackableType;
 using UnityEngine.SceneManagement;
 using IMP.UI;
-using System.Linq;
 using System.Collections;
 using IMP.Common;
-using System;
-using TMPro;
 
 namespace IMP.Core
 {
@@ -99,6 +96,9 @@ namespace IMP.Core
             GameUIManager.Instance.Initialize();
         }
 
+        /// <summary>
+        /// Get current stage data and apply it's data.
+        /// </summary>
         private void PrepareStage()
         {
             m_StageData = StageManager.Instance.CurrStageData;
@@ -115,6 +115,10 @@ namespace IMP.Core
             GameUIManager.Instance.StarCollection.Config(starCount);
         }
 
+        /// <summary>
+        /// Create structure. It invokes when the plane is touched.
+        /// </summary>
+        /// <param name="screenPos"></param>
         private void BuildStructure(Vector2 screenPos)
         {
             if (m_ARRaycastManager.Raycast(screenPos, m_Hits, TrackableType.PlaneWithinPolygon))
@@ -132,7 +136,7 @@ namespace IMP.Core
                 );
 
                 m_State = GameState.BUILT;
-                StartCoroutine(SetThrowableCoroutine());
+                StartCoroutine(SetThrowableCoroutine()); // Prevent throwing when the structure has been built in same frame.
             }
         }
 
@@ -191,6 +195,10 @@ namespace IMP.Core
 
         public void CollectStar()
         {
+            if (State != GameState.BUILT) return;
+            
+            AudioManager.Instance.PlayOneShot(AudioType.STAR);
+
             m_StarCount += 1;
             GameUIManager.Instance.StarCollection.SetStarsActive(m_StarCount);
 

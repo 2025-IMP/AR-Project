@@ -1,3 +1,6 @@
+/// Owner: Minseong Kim
+/// Handle each star UI.
+
 using UnityEngine;
 using UnityEngine.UI;
 

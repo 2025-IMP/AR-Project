@@ -12,8 +12,6 @@ public enum AudioType
     STAR,
     GAME_CLEAR,
     GAME_OVER
-
-
 }
 
 [System.Serializable]
